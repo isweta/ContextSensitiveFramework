@@ -48,7 +48,7 @@ public class CreateResourceFileServlet extends HttpServlet {
 		 Path path = Paths.get(OUTPUT_FILE_NAME);
 	     System.out.println(path);
 	     HttpSession session=request.getSession();
-	   int noIds=(int)session.getAttribute("noIds");
+	   int noIds=Integer.parseInt((String)session.getAttribute("noIds"));
 	   String filePath=(String)session.getAttribute("filePath");
 	   List<String> ls=FieldsListRetriever.getFieldsList(filePath);
 	   System.out.println(ls);
