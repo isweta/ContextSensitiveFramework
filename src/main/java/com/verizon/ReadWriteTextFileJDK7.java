@@ -62,7 +62,7 @@ static String OUTPUT_FILE_NAME ;
 
   //For larger files
   
-  void readLargerTextFile(String aFileName) throws IOException {
+  /*void readLargerTextFile(String aFileName) throws IOException {
     Path path = Paths.get(aFileName);
     try (Scanner scanner =  new Scanner(path, ENCODING.name())){
       while (scanner.hasNextLine()){
@@ -91,7 +91,7 @@ static String OUTPUT_FILE_NAME ;
         writer.newLine();
       }
     }
-  }
+  }*/
 
   private static void log(Object aMsg){
     System.out.println(String.valueOf(aMsg));
