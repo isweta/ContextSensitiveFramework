@@ -22,6 +22,8 @@ public class ReadWriteTextFileJDK7 {
     ReadWriteTextFileJDK7 text = new ReadWriteTextFileJDK7();
     String filePath=filename;
     int ind=filePath.lastIndexOf("\\");
+    if (ind==-1)
+    	ind=filePath.lastIndexOf("/");
     
     
     FILE_NAME = filePath.substring(ind+1);
