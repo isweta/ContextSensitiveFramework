@@ -1,101 +1,80 @@
 package com.verizon;
 
-import java.nio.charset.Charset;
-import java.util.List;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.*;
-import java.io.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
-import java.util.Scanner;
-
-public class ReadWriteTextFileJDK7 {
-	static String FILE_NAME;
-  public static String mainReadWrite(String filename, String savePath) throws IOException{
-    ReadWriteTextFileJDK7 text = new ReadWriteTextFileJDK7();
-    String filePath=filename;
-    int ind=filePath.lastIndexOf("\\");
-    if (ind==-1)
-    	ind=filePath.lastIndexOf("/");
+@WebServlet("/UploadServlet")
+@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB 
+maxFileSize=1024*1024*10,      // 10MB
+maxRequestSize=1024*1024*50)   // 50MB
+public class UploadServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	 private static final String SAVE_DIR = "uploadFiles";
     
-    
-    FILE_NAME = filePath.substring(ind+1);
-     System.out.println("file path is "+filePath);
-    OUTPUT_FILE_NAME=new File(savePath, FILE_NAME).getPath();
-    System.out.println("out_file_in"+OUTPUT_FILE_NAME);
-     List<String> lines = text.readSmallTextFile(filePath);
-    log(lines);
-     //text.writeSmallTextFile(lines, FILE_NAME);
-     Path path = Paths.get(OUTPUT_FILE_NAME);
-     System.out.println(path);
-     Files.write(path, lines, ENCODING);
-    //text.readLargerTextFile(FILE_NAME);
-   // text.writeLargerTextFile(FILE_NAME, lines); 
-     return OUTPUT_FILE_NAME;
-  }
-
- 
-static String OUTPUT_FILE_NAME ;
-  final static Charset ENCODING = StandardCharsets.UTF_8;
-  
-  //For smaller files
-
-  /**
-   Note: the javadoc of Files.readAllLines says it's intended for small
-   files. But its implementation uses buffering, so it's likely good 
-   even for fairly large files.
-  */  
-  List<String> readSmallTextFile(String aFileName) throws IOException {
-    Path path = Paths.get(aFileName);
-    return Files.readAllLines(path, ENCODING);
-  }
-  
-  void writeSmallTextFile(List<String> aLines, String aFileName) throws IOException {
-    Path path = Paths.get(aFileName);
-    Files.write(path, aLines, ENCODING);
-  }
-
-  //For larger files
-  
-  /*void readLargerTextFile(String aFileName) throws IOException {
-    Path path = Paths.get(aFileName);
-    try (Scanner scanner =  new Scanner(path, ENCODING.name())){
-      while (scanner.hasNextLine()){
-        //process each line in some way
-        log(scanner.nextLine());
-      }      
+    public UploadServlet() {
+        super();
+        
     }
-  }
-  
-  void readLargerTextFileAlternate(String aFileName) throws IOException {
-    Path path = Paths.get(aFileName);
-    try (BufferedReader reader = Files.newBufferedReader(path, ENCODING)){
-      String line = null;
-      while ((line = reader.readLine()) != null) {
-        //process each line in some way
-        log(line);
-      }      
-    }
-  }
-  
-  void writeLargerTextFile(String aFileName, List<String> aLines) throws IOException {
-    Path path = Paths.get(aFileName);
-    try (BufferedWriter writer = Files.newBufferedWriter(path, ENCODING)){
-      for(String line : aLines){
-        writer.write(line);
-        writer.newLine();
-      }
-    }
-  }*/
 
-  private static void log(Object aMsg){
-    System.out.println(String.valueOf(aMsg));
-  }
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+        String appPath = request.getServletContext().getRealPath("/");
+        System.out.println("ap path is:"+appPath);
+        String savePath = appPath + File.separator + SAVE_DIR;
+		
+		
+        File fileSaveDir = new File(savePath);
+        if (!fileSaveDir.exists()) {
+            fileSaveDir.mkdir();
+        }
+        String fileName=null ;
+        Collection<Part> parts = request.getParts();
+        for (Part part : parts) {
+        	fileName = extractFileName(part);
+        	part.write(savePath +File.separator+ fileName);
+        	 //  part.write(fileName);
+        }
+        System.out.println(fileName);
+       
+		String filePath=ReadWriteTextFileJDK7.mainReadWrite(fileName, savePath);
+		HttpSession session=request.getSession();
+		session.setAttribute("filePath", filePath);
+        request.setAttribute("message", "Upload has been done successfully!");
+        getServletContext().getRequestDispatcher("/FieldsListServlet").forward(
+                request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+            	//(s.indexOf('=') + 1).trim().replace("\"", "")
+            	//actual (s.indexOf("=") + 2, s.length()-1)
+                return s.substring(s.indexOf("=") + 2, s.length()-1);
+            }
+        }
+        return "";
+    }
+
 }
