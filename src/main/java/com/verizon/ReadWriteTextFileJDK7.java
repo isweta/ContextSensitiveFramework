@@ -27,10 +27,10 @@ public class ReadWriteTextFileJDK7 {
     
     
     FILE_NAME = filePath.substring(ind+1);
-     
+     System.out.println("file path is "+filePath);
     OUTPUT_FILE_NAME=new File(savePath, FILE_NAME).getPath();
     System.out.println("out_file_in"+OUTPUT_FILE_NAME);
-     List<String> lines = text.readSmallTextFile(OUTPUT_FILE_NAME);
+     List<String> lines = text.readSmallTextFile(filePath);
     log(lines);
      //text.writeSmallTextFile(lines, FILE_NAME);
      Path path = Paths.get(OUTPUT_FILE_NAME);
