@@ -72,13 +72,11 @@ public class UploadServlet extends HttpServlet {
 		String savePath = appPath +  "uploadFiles";
 		final String path = savePath;
 		final Part filePart = request.getPart("file");
-		final String fileoldPath = extractFileName(filePart);
-		int ind=fileoldPath.lastIndexOf("\\");
-	    if (ind==-1)
-	    	ind=fileoldPath.lastIndexOf("/");
+		final String fileName = extractFileName(filePart);
+		
 	    
 	    
-	    String fileName = fileoldPath.substring(ind+1);
+	    
 		System.out.println("path :"+path);
 		System.out.println("filename: "+fileName);
 		OutputStream out = null;
