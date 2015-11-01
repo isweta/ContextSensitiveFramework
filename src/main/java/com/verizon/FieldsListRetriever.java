@@ -1,6 +1,10 @@
 package com.verizon;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +54,19 @@ public class FieldsListRetriever {
 		}
 		
 	}
-		System.out.println(fileout);
-		//create a file with string fileout as its data
+		System.out.println("file out is"+fileout);
+		try {
+			FileWriter fout=new FileWriter(new File(filePath));
+			fout.append(fileout);
+			fout.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(ls);
 		return ls;
 		}

@@ -51,8 +51,10 @@ public class CreateResourceFileServlet extends HttpServlet {
 	   int noIds=(Integer)(session.getAttribute("noIds"));
 	   String filePath=(String)session.getAttribute("filePath");
 	   List<String> ls=FieldsListRetriever.getFieldsList(filePath);
-	   System.out.println(ls);
-	   for(int i=0; i<noIds; i++){
+	   System.out.println("List received by retriever"+ls);
+	   System.out.println("ls size"+ls.size());
+	   System.out.println("no "+noIds);
+	   for(int i=0; i<ls.size(); i++){
 		   //String idName="id_"+i;
 		   String resValue=request.getParameter(ls.get(i));
 		   System.out.println(resValue);
