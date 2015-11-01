@@ -24,6 +24,28 @@ public class FieldsListRetriever {
 		} catch (IOException e) {
 		}
 		String content = contentBuilder.toString();
+		
+		String value="<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css\">"
+				+"\n"+	"<script  src=\"resource.js\"></script>"
+				+"\n"+	"<script src=\"//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js\"></script>"
+				+"\n"+	 "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>"
+				+"\n"+	 "<script src=\"//code.jquery.com/jquery-1.10.2.js\"></script>"
+				+"\n"+	  "<script src=\"//code.jquery.com/ui/1.11.4/jquery-ui.js\"></script>"
+				+"\n"+	     "<link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">"
+				+"\n"+	    "<script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"></script>"
+				+"\n"+	    "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>"
+				+"\n"+		"<link rel=\"stylesheet\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css\" type=\"text/css\" media=\"screen\" />"		
+				+"\n"+	    "<script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.8.3.min.js\"></script>"
+				+"\n"+	   "	    <link type=\"text/css\" href=\"jquery-ui-chatbox.css\" rel=\"stylesheet\" />"
+				+"\n"+	    "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js\"></script>"
+				+"\n"+	    "<script  src=\"Handle.js\"></script>";
+		
+		
+		if(content.toLowerCase().contains("<head>"))
+		{
+			 content= content.substring(0,content.indexOf("<head>"))+"\n" + value +"\n"+ content.substring(content.indexOf("<head>"));
+		}
+		
 		String fileout="";
 		String[] div=content.split(">");
 		for(int i=0;i<div.length;i++)
