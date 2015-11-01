@@ -82,7 +82,7 @@ public  InputStream downloadCss(String ctx,  HttpServletResponse response) throw
 		System.out.println("ctx is"+ctx);
 		response.setContentType("application/octet-stream");
 			
-		InputStream is=downloadPage(ctx, response);
+		InputStream is=downloadPage(ctx, response,request);
 		dwnldFile(is, response);
 		
 		//is=downloadCss(ctx, response);
