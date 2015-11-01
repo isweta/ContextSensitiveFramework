@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class DownloadPage
@@ -31,12 +32,15 @@ public class DownloadPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     private static final int BYTES_DOWNLOAD = 1024;
-    public  InputStream downloadPage(String ctx,  HttpServletResponse response) throws IOException{
+    public  InputStream downloadPage(String ctx,  HttpServletResponse response, HttpServletRequest request) throws IOException{
     	
-		response.setHeader("Content-Disposition",
-	                     "attachment;filename=InitForm.html");
+		
 	                     HttpSession session=request.getSession();
-			filepath=session.getAttribute("filePath");
+			String filepath=session.getAttribute("filePath");
+			String fileName=session.getAttribute("modifiedPageName");
+			String header2="attachment;filename="+fileName;
+			response.setHeader("Content-Disposition",
+	                     header2);
 		InputStream is=new FileInputStream(filepath);
 		return is;
 		
