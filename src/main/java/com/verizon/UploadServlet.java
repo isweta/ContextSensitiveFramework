@@ -34,7 +34,7 @@ public class UploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String appPath = request.getServletContext().getRealPath("/");
+		/*String appPath = request.getServletContext().getRealPath("/");
 		System.out.println("ap path is:" + appPath);
 		String savePath = appPath + File.separator + SAVE_DIR;
 
@@ -55,7 +55,7 @@ public class UploadServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("filePath", filePath);
 		request.setAttribute("message", "Upload has been done successfully!");
-		getServletContext().getRequestDispatcher("/FieldsListServlet").forward(request, response);
+		getServletContext().getRequestDispatcher("/FieldsListServlet").forward(request, response);*/
 	}
 
 	/**
