@@ -97,6 +97,7 @@ public class UploadServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			String filePath = path + File.separator + fileName;
 			session.setAttribute("filePath", filePath);
+			session.setAttribute("modifiedPageName", fileName);
 			request.setAttribute("message", "Upload has been done successfully!");
 			getServletContext().getRequestDispatcher("/FieldsListServlet").forward(request, response);
 
