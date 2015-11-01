@@ -4,12 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Context Sensitive Help Integrator</title>
 </head>
-<body>
+
+<body bgcolor="BlanchedAlmond">
+<center>
+	<h3>Please Download these files and add them to your website's root folder </h3>
 	<a href="DownloadPage">Download Modified Webpage</a><br>
 	<a href="DownloadHandle">Download Handle.js</a><br>
 	<a href="DownloadRes">Download resource.js</a><br>
 	<a href="DownloadCss">Download css for chatbox</a><br>
+	</center>
 </body>
 </html>

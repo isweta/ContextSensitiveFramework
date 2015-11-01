@@ -43,6 +43,7 @@ public class FieldsListServlet extends HttpServlet {
 		session.setAttribute("idsList", ls);
 
 		PrintWriter out = response.getWriter();
+		out.println("<center><h3>Assign URLs for context sensitive video help for the form's fields</h3></center>");
 		out.println("<form action='CreateResourceFileServlet' method=get>");
 		out.println("<table align='center'>");
 
@@ -53,7 +54,7 @@ public class FieldsListServlet extends HttpServlet {
 
 		}
 
-		out.println("<input type='submit' name='submit'>");
+		out.println("<tr><td></td><td><input type='submit' name='submit' value='submit'></td></tr>");
 		out.println("</form>");
 		out.println("</table>");
 
