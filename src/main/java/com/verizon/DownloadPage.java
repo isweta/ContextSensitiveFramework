@@ -35,8 +35,9 @@ public class DownloadPage extends HttpServlet {
     	
 		response.setHeader("Content-Disposition",
 	                     "attachment;filename=InitForm.html");
-			
-		InputStream is=new FileInputStream(ctx+File.separator+"uploadFiles"+File.separator+"InitForm.html");
+	                     HttpSession session=request.getSession();
+			filepath=session.getAttribute("filePath");
+		InputStream is=new FileInputStream(filepath);
 		return is;
 		
     }
