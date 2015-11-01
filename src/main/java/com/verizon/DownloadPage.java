@@ -36,8 +36,8 @@ public class DownloadPage extends HttpServlet {
     	
 		
 	                     HttpSession session=request.getSession();
-			String filepath=session.getAttribute("filePath");
-			String fileName=session.getAttribute("modifiedPageName");
+			String filepath=(String)session.getAttribute("filePath");
+			String fileName=(String)session.getAttribute("modifiedPageName");
 			String header2="attachment;filename="+fileName;
 			response.setHeader("Content-Disposition",
 	                     header2);
