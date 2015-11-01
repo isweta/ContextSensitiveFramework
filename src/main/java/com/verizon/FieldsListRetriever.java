@@ -41,17 +41,14 @@ public class FieldsListRetriever {
 				+"\n"+	    "<script  src=\"Handle.js\"></script>";
 		
 		
-		if(content.toLowerCase().contains("<head>"))
-		{
-			 content= content.substring(0,content.indexOf("<head>"))+"\n" + value +"\n"+ content.substring(content.indexOf("<head>"));
-		}
+	
 		
 		String fileout="";
 		String[] div=content.split(">");
 		for(int i=0;i<div.length;i++)
 		{ 	//System.out.println(div[i]);
 		  div[i].replaceAll("\\s+","");
-			if(div[i].contains("input"))
+			if(div[i].contains("input") && !(div[i].toLowerCase().contains("submit")))
 			{
 				if(div[i].contains("id="))
 				{
@@ -76,6 +73,16 @@ public class FieldsListRetriever {
 		}
 		
 	}
+		fileout=fileout+">";
+		if(fileout.toLowerCase().contains("<head>") && !(fileout.toLowerCase().contains("handle.js")))
+		{
+			System.out.println("fileout    "+fileout);
+			System.out.println(fileout.substring(0,fileout.indexOf("<head>")+7));
+			System.out.println("-----------------------------------------");
+			System.out.println(fileout.substring(fileout.indexOf("<head>")+6));
+			fileout = fileout.substring(0,fileout.indexOf("<head>")+7)+"\n" + value +"\n"+ fileout.substring(fileout.indexOf("<head>")+6);
+		}
+		
 		System.out.println("file out is"+fileout);
 		try {
 			FileWriter fout=new FileWriter(new File(filePath));

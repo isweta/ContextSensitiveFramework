@@ -54,7 +54,7 @@ public  InputStream downloadHandle(String ctx,  HttpServletResponse response) th
 	response.setHeader("Content-Disposition",
                      "attachment;filename=handle.js");
 		
-	InputStream is=new FileInputStream(ctx+File.separator+"Handle.js");
+	InputStream is=new FileInputStream(ctx+File.separator+"uploadFiles"+File.separator+"Handle.js");
 	return is;
 	
 }

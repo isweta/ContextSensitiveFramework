@@ -13,23 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DownloadRes
+ * Servlet implementation class DownloadCss
  */
-@WebServlet("/DownloadRes")
-public class DownloadRes extends HttpServlet {
+@WebServlet("/DownloadCss")
+public class DownloadCss extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DownloadRes() {
+    public DownloadCss() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     private static final int BYTES_DOWNLOAD = 1024;
     public  InputStream downloadPage(String ctx,  HttpServletResponse response) throws IOException{
     	
@@ -80,14 +77,14 @@ public  InputStream downloadCss(String ctx,  HttpServletResponse response) throw
 		//InputStream is=downloadPage(ctx, response);
 		//dwnldFile(is, response);
 		
-		//is=downloadCss(ctx, response);
-		//dwnldFile(is, response);
-		
-		//is=downloadHandle(ctx, response);
-		//dwnldFile(is, response);
-		
-		InputStream is=downloadResource(ctx, response);
+		InputStream is=downloadCss(ctx, response);
 		dwnldFile(is, response);
+		
+		//InputStream is=downloadHandle(ctx, response);
+		//dwnldFile(is, response);
+		
+		//is=downloadResource(ctx, response);
+		//dwnldFile(is, response);
 			
 	
 	}
@@ -109,10 +106,10 @@ public  InputStream downloadCss(String ctx,  HttpServletResponse response) throw
 			os.flush();
 			os.close();	
 		   }
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			// TODO Auto-generated method stub
+			doGet(request, response);
+		}
 
 }

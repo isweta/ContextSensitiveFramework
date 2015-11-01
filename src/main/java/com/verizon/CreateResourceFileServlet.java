@@ -43,8 +43,8 @@ public class CreateResourceFileServlet extends HttpServlet {
 		String OUTPUT_FILE_NAME=new File(savePath, "resource.js").getPath();
 		List<String> lines=new ArrayList<String>();
 		StringBuffer buff=new StringBuffer();
-		buff.append("\ngOptions={");
-		lines.add("gOptions={");
+		buff.append("\nobj={");
+		lines.add("obj={");
 		 Path path = Paths.get(OUTPUT_FILE_NAME);
 	     System.out.println(path);
 	     HttpSession session=request.getSession();
@@ -59,8 +59,8 @@ public class CreateResourceFileServlet extends HttpServlet {
 		   String resValue=request.getParameter(ls.get(i));
 		   System.out.println(resValue);
 		   if(resValue!=""){
-			   buff.append("\n"+ls.get(i)+":"+resValue);
-			   lines.add(ls.get(i)+":"+resValue);
+			   buff.append("\n"+ls.get(i)+":'"+resValue+"',");
+			   lines.add(""+ls.get(i)+":'"+resValue+"',");
 		   }
 	   }
 	   buff.append("\n}");
