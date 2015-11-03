@@ -71,6 +71,7 @@ $(document).ready(function(){
       },
       "Click to call": function() {
       	this.src="https://www.linkedin.com/cws/share?mini=true&amp;url=" + location.href;
+      	window.alert("Kindly call 43XXXXX763");
           $( this ).dialog( "close" );
         },
     }
