@@ -5,9 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Context Sensitive Help Integrator</title>
-</head>
-
-<body bgcolor="BlanchedAlmond">
 <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sign Up Form</title>
@@ -134,6 +131,10 @@ label.light {
 }
   
 		</style>
+</head>
+
+<body bgcolor="BlanchedAlmond">
+
 <center>
 	<h3>Please Download these files and add them to your website's root folder </h3>
 	<a href="DownloadPage">Download Modified Webpage</a><br>
