@@ -38,7 +38,7 @@ public class FieldsListRetriever {
 				+"\n"+	    "<script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.8.3.min.js\"></script>"
 				+"\n"+	   "	    <link type=\"text/css\" href=\"jquery-ui-chatbox.css\" rel=\"stylesheet\" />"
 				+"\n"+	    "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js\"></script>"
-				+"\n"+	    "<script  src=\"Handle.js\"></script>";
+				+"\n"+	    "<script  src=\"handle.js\"></script>";
 		
 		
 	
