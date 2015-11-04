@@ -50,12 +50,12 @@ public class FieldsListRetriever {
 		  div[i].replaceAll("\\s+","");
 			if(div[i].contains("input") && !(div[i].toLowerCase().contains("submit")))
 			{
-				if(div[i].contains("id="))
+				if(div[i].contains("id=\""))
 				{
 					System.out.println(div[i].substring(div[i].toLowerCase().indexOf("id=\"")+4,div[i].indexOf("\"",(div[i].toLowerCase().indexOf("id=\"")+4)) ));
 				ls.add(div[i].substring(div[i].toLowerCase().indexOf("id=\"")+4,div[i].indexOf("\"",(div[i].toLowerCase().indexOf("id=\"")+4)) ));
 				}
-			else if(div[i].contains("name="))
+			else if(div[i].contains("name=\""))
 				{
 					String name=div[i].substring(div[i].toLowerCase().indexOf("name=\"")+6,div[i].indexOf("\"",(div[i].toLowerCase().indexOf("name=\"")+6)) );
 				div[i]=div[i]+" "+"id="+"\"id_"+name+"\" ";
